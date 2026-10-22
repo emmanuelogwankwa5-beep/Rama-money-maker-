@@ -1,1 +1,126 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAMA MONEY MAKER</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #172033;
+    }
+    header {
+      background: #075e45;
+      color: white;
+      padding: 25px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+    header h1 { margin: 0 0 8px; font-size: 25px; }
+    header p { margin: 0; color: #d1fae5; }
+    main { padding: 18px; max-width: 600px; margin: auto; }
+    .balance {
+      background: white;
+      padding: 22px;
+      border-radius: 18px;
+      margin-top: 18px;
+      box-shadow: 0 3px 12px #0000000c;
+    }
+    .balance p { color: #64748b; margin: 0 0 8px; }
+    .amount { font-size: 32px; font-weight: bold; color: #075e45; }
+    h2 { font-size: 20px; margin-top: 25px; }
+    .task {
+      background: white;
+      padding: 17px;
+      border-radius: 14px;
+      margin: 12px 0;
+    }
+    .task h3 { margin: 0 0 7px; }
+    .task p { color: #64748b; font-size: 14px; }
+    button {
+      background: #087f5b;
+      color: white;
+      border: 0;
+      padding: 12px 16px;
+      border-radius: 9px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:disabled { background: #94a3b8; }
+    .notice {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-top: 22px;
+    }
+    footer { text-align: center; padding: 20px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💚 RAMA MONEY MAKER</h1>
+    <p>Discover tasks. Build your opportunities.</p>
+  </header>
+
+  <main>
+    <section class="balance">
+      <p>Your demo balance</p>
+      <div class="amount" id="balance">KSh 0</div>
+      <p id="count">0 demo tasks completed</p>
+    </section>
+
+    <h2>Available Tasks</h2>
+    <div id="tasks"></div>
+
+    <p class="notice">
+      DEMO VERSION: Tasks and balances on this page are for testing
+      only. No real money is earned or paid. Real earning tasks,
+      verified partners and secure payment processing must be added
+      before launch.
+    </p>
+  </main>
+
+  <footer>© 2026 RAMA MONEY MAKER</footer>
+
+  <script>
+    const tasks = [
+      { title: "Explore the app", description: "Learn how the app works.", reward: 10 },
+      { title: "Complete a practice quiz", description: "Try a sample knowledge task.", reward: 20 },
+      { title: "Learn about online safety", description: "Read tips for avoiding scams.", reward: 15 }
+    ];
+
+    let balance = 0;
+    let completed = 0;
+    const tasksArea = document.getElementById("tasks");
+
+    tasks.forEach((task, index) => {
+      const card = document.createElement("section");
+      card.className = "task";
+      card.innerHTML = `
+        <h3>${task.title}</h3>
+        <p>${task.description}</p>
+        <p>Demo reward: KSh ${task.reward}</p>
+        <button type="button">Try Task</button>
+      `;
+
+      const button = card.querySelector("button");
+      button.addEventListener("click", () => {
+        balance += task.reward;
+        completed++;
+        document.getElementById("balance").textContent =
+          "KSh " + balance;
+        document.getElementById("count").textContent =
+          completed + " demo tasks completed";
+        button.textContent = "Demo Completed ✓";
+        button.disabled = true;
+      });
+
+      tasksArea.appendChild(card);
+    });
+  </script>
+</body>
+</html>
